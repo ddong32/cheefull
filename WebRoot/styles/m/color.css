@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+.col-1{color:#50b400 !important}
+.bg-1{background-color:#50b400 !important}
+.bd-1{border-color:#50b400}
+.bd-c{border-color:#50b400 !important;color:#50b400 !important}
+.c-on{color:#50b400 !important}
+.c-on *{color:#50b400 !important}
+.c-ba:before{border-color:#50b400 !important}
+.c-ba:after{border-color:#50b400 !important}
+.lab:after{background-color:#50b400 !important}
+.bg-d > div{background-color:#50b400 !important}
+
+.price,.price2{color:#e5004f;}
+.price:before{content:"¥ ";font-size:12px;color:#e5004f}
+
+

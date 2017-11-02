@@ -1,0 +1,4 @@
+ul.ui-autocomplete {max-height:400px; width:315px; overflow-x: hidden; overflow-y: auto; padding:2px;}/*firefox*/
+* html ul.ui-autocomplete {height:400px; width:315px; overflow-x: hidden; overflow-y: auto; padding:2px;}/*ie6*/
+*+html ul.ui-autocomplete {max-height:400px; width:315px; overflow-x: hidden; overflow-y: auto; padding:2px;}/*ie7*/
+ul.ui-autocomplete {max-height:400px; width:315px; overflow-x: hidden; overflow-y: auto; padding:2px;}/*ie8*/

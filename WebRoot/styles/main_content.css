@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+/********  这部分代码原项目里可能已经有了,试一下不加行不行.如果不加有问题,这个会对项目有影响,不能直接加 BEGIN  *********/
+
+/****  如果不加有问题,上面一段删除,加以下内容  BEGIN  ****/
+.main_content_layout h2,.main_content_layout ul,.main_content_layout li
+	{
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	list-style: none;
+}
+
+/****  如果不加有问题,上面一段删除,加以下内容  END  ****/
+
+/********  这部分代码原项目里可能已经有了,试一下不加行不行.如果不加有问题,这个会对项目有影响,不能直接加 BEGIN  *********/
+.pub_inp h2 {
+	margin-bottom: 5px;
+	color: #4d5677;
+	font-size: 14px;
+	font-weight: bold;
+	text-indent: 6px;
+	line-height: 22px;
+}
+
+.main_content_layout {
+	padding-right: 350px;
+	_padding-right: 0;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+
+.main_content_layout_container {
+	float: left;
+	width: 100%;
+}
+
+.main_content_layout_sidebar {
+	width: 345px;
+	margin-right: -350px;
+	_margin-right: 3px;
+	float: right;
+	*margin-left: 5px;
+}
+
+.datagrid ul li {
+	height: 25px;
+	line-height: 25px;
+	text-indent: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+
+.datagrid ul li.cor {
+	background-color: #b7bdd4;
+}
+
+.datagrid ul li:hover {
+	color: #fff;
+	background-color: #4e94e6;
+}

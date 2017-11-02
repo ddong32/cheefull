@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="cheefull"
+  id="myeclipse.1508374590537"
+  context-root="/full"
+  j2ee-spec="5.0"
+  archive="cheefull.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

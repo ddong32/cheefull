@@ -1,0 +1,44 @@
+.title_style{ 
+	float:left; 
+	height:35px; 
+	width:22%;
+	line-height:35px;
+}
+.content_style{ 
+	float:left; 
+	height:35px; 
+	line-height:35px;
+}
+.button_div{
+	padding: 10px 0px; 
+	text-align: right; 
+	border-top: solid 1px #7b819a; 
+	width: 65%; 
+	margin-top: 40px;
+}
+.upload_select{
+	height: 20px; 
+	padding: 3px 0px; 
+	position: absolute;
+}
+#interval_time{
+	height: 20px; 
+	padding: 3px 0px; 
+	position: absolute; 
+	top: 35px; 
+	left:-53px; 
+	width: 500px;
+}
+#time_time{
+	height: 20px; 
+	padding: 3px 0px; 
+	position: absolute; 
+	top: 35px; 
+	left:-53px; 
+	width: 400px;
+}
+#errInfo{
+	position: relative;
+	top: 40px;
+	width: 65%;
+}

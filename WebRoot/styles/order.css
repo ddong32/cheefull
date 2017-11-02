@@ -1,0 +1,110 @@
+html{font:13px "Microsoft Yahei", Arial,'瀹嬩綋', Helvetica,sans-serif; margin:0; padding:0;}
+body.nobg{background:#f6f6f6;}
+a:link, a:visited{text-decoration:none;color:#04729d;}
+a:hover{color:#f20; text-decoration:underline;}
+.left{float:left;}
+.right{float:right;}
+table.orderTable{empty-cells:show; border-collapse:collapse; font:13px "Microsoft Yahei",  Arial,'瀹嬩綋', Helvetica,sans-serif;}
+h1,h2,h3,h4,h5,h6{margin:0; padding:0; border:none; list-style-type:none; font-size:13px;}
+
+/* 鐐瑰嚮鍙樻垚杈撳叆妗嗗浘鏍囨彁绀�*/
+.onClickIco{background:url(../images/onClickIco.gif) no-repeat; display:inline-block; margin:0 0 0 2px; width:12px; height:12px; overflow:hidden;}
+#OsMsgIofo{z-index:10;position:fixed; top:10%; left:48%; width:100px; height:100px;line-height:100px; color:#FFF;text-align:center; border-radius:100px; display:none;}
+#OsMsgIofo .msgbj{z-index:10; position:absolute; top:10%; left:48%; width:100px; height:100px; border-radius:100px; background-color:#f20;filter:alpha(opacity=70);-moz-opacity:0.7;opacity:0.7;}
+#OsMsgIofo .msgtxt{z-index:10; position:absolute; top:10%; left:48%; width:100px; height:100px;line-height:100px;border-radius:100px; color:#FFF;text-align:center; font-size:20px;}
+
+/*  标头 DIV */
+.titleBox{border:1px solid #d6dde7; background:#fff; margin:0 0 10px 0;}
+.titleBox h3{padding:10px; }
+.titleBox h3 strong{font-size:16px;}
+.titleBox h3 a.right{font-weight:normal;}
+.titleBox ul{background:#e9eef2; padding:10px; border-top:1px solid #d6dde7;}
+.titleBox ul input[type='text']{height:28px; line-height:28px; border:1px solid #b4d0e5; padding:0 2px; font-size:13px;}
+
+/* 操作步骤数提示 */
+.otsBox{width:100%; margin:10px 0;}
+.otsBox tr td{padding:5px; border:1px solid #d6dde7; background:#e9eef2; color:#999;}
+.otsBox tr td h5{display:inline-block; width:20px; height:20px; line-height:20px; background:#d6dde7; color:#e9eef2; font-size:16px; text-align:center; border-radius:10px; }
+.otsBox tr td p{display:inline-block; height:20px; line-height:135%; margin:0 0 0 3px;}
+.otsBox tr td p span{color:#ccc;}
+.otsBox tr td.on{background:#0487BB; border:1px solid #2e9ed7;color:#fff;} /* 宸插鎵圭殑 */
+.otsBox tr td.on h5{background:#a8dbed; color:#0487BB;}
+.otsBox tr td.on p span{color:#a8dbed;}
+.otsBox tr td.onnow{background:#f20; border:1px solid #f20;color:#fff;}/* 褰撳墠姝ラ */
+.otsBox tr td.onnow h5{background:#fff; color:#f20;}
+.otsBox tr td.onnow p span{color:#ffd3cc;}
+.otsBox tr.finish td{background:#7b00ff;  border:1px solid #9737ff; color:#dfcaf6;}/* 鍏ㄩ儴瀹屾垚 */
+.otsBox tr.finish td h5{background:#dfcaf6; color:#7b00ff;}
+.otsBox tr.finish td p span{color:#dfcaf6;}
+.otsBox tr.cancel td{background:#b0b0b0;  border:1px solid #c8c8c8; color:#c7c7c7;}/* 鍙栨秷 */
+.otsBox tr.cancel td h5{background:#eaeaea; color:#b0b0b0;}
+.otsBox tr.cancel td p span{color:#eaeaea;}
+
+a:link, a:visited{text-decoration:none;color:#04729d;}
+a:hover{color:#f20; text-decoration:underline;}
+.left{float:left;}
+.right{float:right;}
+textarea{border:1px solid #b4d0e5; width:98%; height:60px; padding:2px; font-size:13px;}
+.red{color:#f20;}
+.pointer{cursor:pointer;} /* 鼠标可点击形状  */
+.listBg{background:#f8f8f8;}/* 隔行换色 */
+.listBg2{background:#e9eef2;}/* 隔行换色 可以用于下拉框，色重 */
+.listOver{background:#fff3d1;}/* 隔行换色:鼠标经过 */
+
+
+/* 选择卡菜单 */
+.tagHeaderMenu{margin:0 0 10px 0;}
+.tagHeaderMenu h3{border:1px solid #d6dde7; border-bottom:0; padding:10px; background:#fff;}
+.tagHeaderMenu h3 strong{font-size:16px;}
+.tagHeaderMenu h3 a.right{font-weight:normal;}
+.tagHeaderMenu ul{height:36px; line-height:36px; background:#e9eef2; border:1px solid #d6dde7; overflow:hidden;}
+.tagHeaderMenu ul li{float:left;}
+.tagHeaderMenu ul strong{font-size:16px; padding-left:10px;}
+.tagHeaderMenu ul a:link, .tagHeaderMenu ul a:visited{text-decoration:none;color:#04729d; float:left; font-size:14px; font-weight:bold; height:36px; line-height:36px; border-right:1px solid #d6dde7; padding:0 10px; overflow:hidden;}
+.tagHeaderMenu ul a:hover{color:#f20; text-decoration:underline;}
+.tagHeaderMenu ul a.act:link, .tagHeaderMenu ul a.act:visited{color:#000; background:#d6dde7; font-size:14px; height:38px; line-height:38px; position: relative;}
+.tagHeaderMenu ul a.act:hover{color:#f20; }
+.tagHeaderMenu ul a span{font-style:normal; font-size:10px; font-weight:normal;}
+.tagHeaderMenu ul a i{font-style:normal; font-size:10px; font-weight:normal; background:#f20; color:#fff; padding:0 6px; border-radius:20px; position: relative; top:-10px;}
+.tagHeaderMenu ul a.right{float:right;border:0; font-size:14px; font-weight:normal;}
+.tagHeaderMenu dt{border:1px solid #d6dde7; border-top:0; padding:10px; background:#fff;}
+.tagMenuSmall{} /* 调小字体 */
+.tagMenuSmall ol{border:1px solid #d6dde7; border-top:none; padding:10px; background:#fff;}
+.tagMenuSmall ul a:link, .tagMenuSmall ul a:visited{font-size:12px; font-weight:normal; padding:0 5px;}
+.tagMenuSmall ul a.act:link, .tagMenuSmall ul a.act:visited{font-size:12px; font-weight:bold;}
+
+/* 表格：下订单内容 */
+.orderTable{width:100%; background:#fff; text-align:center; margin:0 0 10px 0;}
+.orderTable thead tr th{border:1px solid #d6dde7; padding:6px 4px;  font-size:16px; text-align:left;} 
+.orderTable tbody tr th{border:1px solid #d6dde7; padding:6px 4px; background:#e9eef2;  font-weight:normal;}
+.orderTable tbody tr td{border:1px solid #d6dde7; padding:6px 4px; }
+.orderTable tbody tr td.tdLeft{text-align:left;}
+.orderTable tbody tr th.tdRight{text-align:right;}
+.orderTable tbody tr td span.price{color:#f20; font-weight:bold;}
+.orderTable tbody tr td input[type='text']{height:30px; line-height:30px; border:1px solid #b4d0e5; width:93%; padding:0 2px; font-size:13px;}
+.orderTable tbody tr td textarea{border:1px solid #b4d0e5; width:99.5%; height:40px; padding:2px; font-size:13px;}
+.orderTable tbody tr td select{border:1px solid #b4d0e5;line-height:22px;margin:-1px;padding:4px 3px;font-size:13px;width:auto;*width:auto;}  
+.orderTable tbody tr td .select_border{*background:#fff;*border:1px solid #b4d0e5;*padding:4px;width:auto;}  
+.orderTable tbody tr td .container{*border:0;*position:relative;*width:auto;*height:18px;*overflow:hidden;*background:#fff;}  
+.orderTable tbody tr td.orderPrice{text-align:right; padding:10px;}
+.orderTable tbody tr td.orderPrice p span{margin:0 5px;}
+.orderTable tbody tr td.orderPrice p strong{color:#f20;}
+.orderTable tbody tr td.orderPrice p strong#hotel_total{color:#f20; font-size:20px;}
+.orderTable tfoot tr th{border:1px solid #d6dde7; padding:6px 4px; background:#fdfed5;}
+.orderTable tfoot tr td{border:1px solid #d6dde7; padding:6px 4px;  background:#fdfed5;}
+.orderTable tfoot tr td.tdLeft{text-align:left;}
+.orderTableAlign tbody tr th{text-align:right;}
+.orderTableAlign tbody tr td{text-align:left}
+
+.selected{background-color: #fdfed5;}
+
+#status_div {padding:5px; padding-left:0px; margin-top:5px;line-height:24px; float:left; width:600px; font-size: 15px;}
+#status_div #_intIndexNum, #status_div #_intSffs, #status_div #_intStat, #status_div #_intSflx {color:red; font-size:18px;}
+.clear_both {clear: both;}
+#oprt_buttons {padding:5px; margin-top:5px;line-height:24px;float:right;width:340px;}
+#oprt_buttons span {padding-left:15px;float:left;}
+
+a.disableCss:link, a.disableCss:visited {pointer-events:none; color: #afafaf; cursor: default}
+.alert-tip {border: none 0; border-left: solid 4px #edd28a; background: #fcf8e2;color: #9d7437;padding: 3px 6px; font-size: 12px; height:20px; line-height: 22px; font-weight: normal;}
+
+.payshoworder{color:blue; text-decoration:underline; cursor: pointer}
