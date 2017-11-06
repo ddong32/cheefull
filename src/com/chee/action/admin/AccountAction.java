@@ -41,7 +41,7 @@ public class AccountAction extends BaseAction<Account, Integer> {
 
 	public String ajaxBusinessAccountTable() {
 		try {
-			List<Account> accountList = new ArrayList();
+			List<Account> accountList = new ArrayList<Account>();
 			if ((this.account != null)
 					&& (!"".equals(this.account.getOrderId()))) {
 				accountList = this.accountService.findOrderID(this.account
@@ -55,11 +55,10 @@ public class AccountAction extends BaseAction<Account, Integer> {
 			double sumfkje = 0.0D;
 			for (Account account : accountList) {
 				Map<String, String> map = new HashMap();
-				map.put("id", account.getId()+"");
+				map.put("id", account.getId() + "");
 				map.put("stat", account.getStat());
 				map.put("statZw",
-						(String) StaticUtils.getAccountStatMap().get(
-								account.getStat()));
+						(String) StaticUtils.getAccountStatMap().get(account.getStat()));
 				map.put("sflx",
 						(String) StaticUtils.getSflxMap()
 								.get(account.getSflx()));
@@ -291,7 +290,7 @@ public class AccountAction extends BaseAction<Account, Integer> {
 		double sumfkje = 0.0D;
 		for (Account temp : list) {
 			Map<String, String> map = new HashMap();
-			map.put("id", temp.getId()+"");
+			map.put("id", temp.getId() + "");
 			map.put("stat",
 					(String) StaticUtils.getAccountStatMap()
 							.get(temp.getStat()));
@@ -313,7 +312,7 @@ public class AccountAction extends BaseAction<Account, Integer> {
 				map.put("sfmc", temp.getCooperator().getDwmc());
 				map.put("yhhm", temp.getCooperator().getYhhm());
 				map.put("yhzh", temp.getCooperator().getYhzh());
-				map.put("cpid", temp.getCooperator().getId()+"");
+				map.put("cpid", temp.getCooperator().getId() + "");
 			} else {
 				map.put("sfmc", "");
 				map.put("yhhm", "");
@@ -426,14 +425,17 @@ public class AccountAction extends BaseAction<Account, Integer> {
 
 	public String receiptsInput() {
 		if ((this.account != null) && (this.account.getId() != null)) {
-			this.account = ((Account) this.accountService.load(this.account.getId()));
-			this.account.setZwsflx((String) getSflxMap().get(this.account.getSflx()));
+			this.account = ((Account) this.accountService.load(this.account
+					.getId()));
+			this.account.setZwsflx((String) getSflxMap().get(
+					this.account.getSflx()));
 			if ("1".equals(this.account.getSflx())) {
-				this.account.setDwmc(this.account.getBusinessCustomer().getCustomer().getParent().getPathName());
+				this.account.setDwmc(this.account.getBusinessCustomer()
+						.getCustomer().getParent().getPathName());
 			} else {
 				this.account.setDwmc(this.account.getCooperator().getDwmc());
 			}
-			this.account_ids = this.account.getId()+"";
+			this.account_ids = this.account.getId() + "";
 		}
 		return "receiptsInput";
 	}
