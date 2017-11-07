@@ -463,7 +463,7 @@ function setBankRunnigTable(msg,id){
 				trclass = "class=\"listBg "+trselect+"\"";
 			}
 			datahtml += '<tr ' + trclass + '>';
-			datahtml += '<td>' + data[i].jzsj + '</td>';
+			datahtml += '<td title=\"' + data[i].jzsj + '\">' + data[i].jzsj + '</td>';
 			datahtml += '<td>' + data[i].djm + '</td>';
 			datahtml += '<td>' + data[i].dfzh + '</td>';
 			datahtml += '<td>' + data[i].dfhm + '</td>';
