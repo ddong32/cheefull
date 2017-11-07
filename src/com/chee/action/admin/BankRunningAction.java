@@ -127,8 +127,7 @@ public class BankRunningAction extends BaseAction<BankRunning, Integer> {
 	public String loadBankRunning() {
 		List<BankRunning> bankRunningList = new ArrayList();
 		if (this.bankRunning != null) {
-			bankRunningList = this.bankRunningService
-					.findAuditBankRunningList(this.bankRunning);
+			bankRunningList = this.bankRunningService.findAuditBankRunningList(this.bankRunning);
 		}
 		Map optionMap = new HashMap();
 		List optionList = new ArrayList();
