@@ -31,7 +31,8 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Results;
 
 @ParentPackage("admin")
-@Results({ @org.apache.struts2.convention.annotation.Result(name = "index", location = "BankRunning!list.action", type = "redirect") })
+@Results({
+		@org.apache.struts2.convention.annotation.Result(name = "index", location = "BankRunning!list.action", type = "redirect") })
 public class BankRunningAction extends BaseAction<BankRunning, Integer> {
 	private static final long serialVersionUID = 4984599292597512018L;
 	@Resource
@@ -48,8 +49,8 @@ public class BankRunningAction extends BaseAction<BankRunning, Integer> {
 		if ("1".equals(this.bankRunning.getShbj())) {
 			return "error";
 		}
-		String result = this.bankRunningService.saveBankRunning(
-				this.bankRunning, getLoginUser().getName(), this.currentBankId);
+		String result = this.bankRunningService.saveBankRunning(this.bankRunning, getLoginUser().getName(),
+				this.currentBankId);
 		if (("".equals(result)) && (result == "")) {
 			return "success";
 		}
@@ -61,26 +62,21 @@ public class BankRunningAction extends BaseAction<BankRunning, Integer> {
 		if (this.bankRunning == null) {
 			this.bankRunning = new BankRunning();
 			if (StringUtils.isEmpty(this.bankRunning.getBeginDate())) {
-				this.bankRunning.setBeginDate(DateUtil.afterNDay(new Date(),
-						-100, "yyyy-MM-dd"));
+				this.bankRunning.setBeginDate(DateUtil.afterNDay(new Date(), -100, "yyyy-MM-dd"));
 			}
 			if (StringUtils.isEmpty(this.bankRunning.getEndDate())) {
-				this.bankRunning.setEndDate(DateUtil.DateToString(new Date(),
-						"yyyy-MM-dd"));
+				this.bankRunning.setEndDate(DateUtil.DateToString(new Date(), "yyyy-MM-dd"));
 			}
 			this.bankRunning.setShbj("0");
 		}
-		this.page = this.bankRunningService.findBankRunningPage(this.page,
-				this.bankRunning);
+		this.page = this.bankRunningService.findBankRunningPage(this.page, this.bankRunning);
 		return "list";
 	}
 
 	public String input() {
 		if ((this.bankRunning != null) && (this.bankRunning.getId() != null)) {
-			this.bankRunning = ((BankRunning) this.bankRunningService
-					.get(this.bankRunning.getId()));
-			this.bankRunning.setToday(DateUtil.DateToString(
-					this.bankRunning.getJzsj(), "yyyy-MM-dd"));
+			this.bankRunning = ((BankRunning) this.bankRunningService.get(this.bankRunning.getId()));
+			this.bankRunning.setToday(DateUtil.DateToString(this.bankRunning.getJzsj(), "yyyy-MM-dd"));
 			if ("1".equals(this.bankRunning.getSflx())) {
 				this.bankRunning.setJe(this.bankRunning.getSrje());
 			} else {
@@ -88,18 +84,15 @@ public class BankRunningAction extends BaseAction<BankRunning, Integer> {
 			}
 		} else {
 			this.bankRunning = new BankRunning();
-			this.bankRunning.setToday(DateUtil.DateToString(new Date(),
-					"yyyy-MM-dd"));
+			this.bankRunning.setToday(DateUtil.DateToString(new Date(), "yyyy-MM-dd"));
 		}
 		return "input";
 	}
 
 	public String inputrec() {
 		if ((this.bankRunning != null) && (this.bankRunning.getId() != null)) {
-			this.bankRunning = ((BankRunning) this.bankRunningService
-					.get(this.bankRunning.getId()));
-			this.bankRunning.setToday(DateUtil.DateToString(
-					this.bankRunning.getJzsj(), "yyyy-MM-dd"));
+			this.bankRunning = ((BankRunning) this.bankRunningService.get(this.bankRunning.getId()));
+			this.bankRunning.setToday(DateUtil.DateToString(this.bankRunning.getJzsj(), "yyyy-MM-dd"));
 			if ("1".equals(this.bankRunning.getSflx())) {
 				this.bankRunning.setJe(this.bankRunning.getSrje());
 			} else {
@@ -107,16 +100,14 @@ public class BankRunningAction extends BaseAction<BankRunning, Integer> {
 			}
 		} else {
 			this.bankRunning = new BankRunning();
-			this.bankRunning.setToday(DateUtil.DateToString(new Date(),
-					"yyyy-MM-dd"));
+			this.bankRunning.setToday(DateUtil.DateToString(new Date(), "yyyy-MM-dd"));
 		}
 		return "inputrec";
 	}
 
 	@rmpfLog(desc = "银行流水删除")
 	public String delete() {
-		BankRunning persistent = (BankRunning) this.bankRunningService
-				.load(this.bankRunning.getId());
+		BankRunning persistent = (BankRunning) this.bankRunningService.load(this.bankRunning.getId());
 		if ("1".equals(persistent.getShbj())) {
 			return "error";
 		}
@@ -137,13 +128,10 @@ public class BankRunningAction extends BaseAction<BankRunning, Integer> {
 		for (BankRunning bankRunning : bankRunningList) {
 			Map<String, String> map = new HashMap();
 			map.put("id", bankRunning.getId() + "");
-			map.put("jzsj",
-					DateUtil.formatDate(bankRunning.getJzsj(), "yyyy-MM-dd"));
+			map.put("jzsj", DateUtil.formatDate(bankRunning.getJzsj(), "yyyy-MM-dd"));
 			map.put("djm", bankRunning.getBank().getDjm());
-			map.put("dfzh",
-					bankRunning.getDfzh() == null ? "" : bankRunning.getDfzh());
-			map.put("dfhm",
-					bankRunning.getDfhm() == null ? "" : bankRunning.getDfhm());
+			map.put("dfzh", bankRunning.getDfzh() == null ? "" : bankRunning.getDfzh());
+			map.put("dfhm", bankRunning.getDfhm() == null ? "" : bankRunning.getDfhm());
 			map.put("srje", getFormatMoney(bankRunning.getSrje()));
 			map.put("zcje", getFormatMoney(bankRunning.getZcje()));
 			map.put("bz", bankRunning.getBz());
@@ -156,8 +144,7 @@ public class BankRunningAction extends BaseAction<BankRunning, Integer> {
 	}
 
 	public void exportXls() throws IOException {
-		List<BankRunning> list = this.bankRunningService
-				.findBankRunningListTotal(this.bankRunning);
+		List<BankRunning> list = this.bankRunningService.findBankRunningListTotal(this.bankRunning);
 
 		double sumSrje = 0.0D;
 		double sumZcje = 0.0D;
@@ -247,8 +234,7 @@ public class BankRunningAction extends BaseAction<BankRunning, Integer> {
 
 		getResponse().setContentType("application/force-download");
 
-		getResponse().setHeader("Content-Disposition",
-				"attachment;filename=" + filename);
+		getResponse().setHeader("Content-Disposition", "attachment;filename=" + filename);
 		OutputStream out = null;
 		ByteArrayInputStream in = null;
 		try {
@@ -268,14 +254,11 @@ public class BankRunningAction extends BaseAction<BankRunning, Integer> {
 		}
 	}
 
-	private void writeCol(WritableSheet sheet, Vector col, int rowNum)
-			throws RowsExceededException, WriteException {
+	private void writeCol(WritableSheet sheet, Vector col, int rowNum) throws RowsExceededException, WriteException {
 		int size = col.size();
 		for (int i = 0; i < size; i++) {
-			if (((col.get(i) instanceof Integer))
-					|| ((col.get(i) instanceof Float))) {
-				Number label = new Number(i, rowNum, Float.parseFloat(col
-						.get(i) + ""));
+			if (((col.get(i) instanceof Integer)) || ((col.get(i) instanceof Float))) {
+				Number label = new Number(i, rowNum, Float.parseFloat(col.get(i) + ""));
 				sheet.addCell(label);
 			} else {
 				Label label = new Label(i, rowNum, (String) col.get(i));
