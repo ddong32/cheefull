@@ -22,8 +22,13 @@ import net.sf.json.JSONArray;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Results;
 
+/**
+ * @author qin
+ *
+ */
 @ParentPackage("admin")
-@Results({ @org.apache.struts2.convention.annotation.Result(name = "index", location = "account_flow!list.action", type = "redirect") })
+@Results({
+		@org.apache.struts2.convention.annotation.Result(name = "index", location = "account_flow!list.action", type = "redirect") })
 public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 	private static final long serialVersionUID = 4984599292597512018L;
 	@Resource
@@ -45,17 +50,14 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 		if (this.accountFlow == null) {
 			this.accountFlow = new AccountFlow();
 			if (StringUtils.isEmpty(this.accountFlow.getBeginDate())) {
-				this.accountFlow.setBeginDate(DateUtil.afterNDay(new Date(),
-						-100, "yyyy-MM-dd"));
+				this.accountFlow.setBeginDate(DateUtil.afterNDay(new Date(), -100, "yyyy-MM-dd"));
 			}
 			if (StringUtils.isEmpty(this.accountFlow.getEndDate())) {
-				this.accountFlow.setEndDate(DateUtil.DateToString(new Date(),
-						"yyyy-MM-dd"));
+				this.accountFlow.setEndDate(DateUtil.DateToString(new Date(), "yyyy-MM-dd"));
 			}
 			this.accountFlow.setStat("1");
 		}
-		this.page = this.accountFlowService.findWaitAuditDataPage(this.page,
-				this.accountFlow, "takeFinaneChecked");
+		this.page = this.accountFlowService.findWaitAuditDataPage(this.page, this.accountFlow, "takeFinaneChecked");
 		return "takeFinaneChecked";
 	}
 
@@ -63,16 +65,13 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 		if (this.accountFlow == null) {
 			this.accountFlow = new AccountFlow();
 			if (StringUtils.isEmpty(this.accountFlow.getBeginDate())) {
-				this.accountFlow.setBeginDate(DateUtil.afterNDay(new Date(),
-						-100, "yyyy-MM-dd"));
+				this.accountFlow.setBeginDate(DateUtil.afterNDay(new Date(), -100, "yyyy-MM-dd"));
 			}
 			if (StringUtils.isEmpty(this.accountFlow.getEndDate())) {
-				this.accountFlow.setEndDate(DateUtil.DateToString(new Date(),
-						"yyyy-MM-dd"));
+				this.accountFlow.setEndDate(DateUtil.DateToString(new Date(), "yyyy-MM-dd"));
 			}
 		}
-		this.page = this.accountFlowService.findWaitAuditDataPage(this.page,
-				this.accountFlow, "takeFinaneRechecked");
+		this.page = this.accountFlowService.findWaitAuditDataPage(this.page, this.accountFlow, "takeFinaneRechecked");
 		return "takeFinaneRechecked";
 	}
 
@@ -82,8 +81,7 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 
 			this.accountFlow.setStat("2");
 		}
-		this.page = this.accountFlowService.findWaitAuditDataPage(this.page,
-				this.accountFlow, "payFinaneChecked");
+		this.page = this.accountFlowService.findWaitAuditDataPage(this.page, this.accountFlow, "payFinaneChecked");
 		return "payFinaneChecked";
 	}
 
@@ -93,8 +91,7 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 
 			this.accountFlow.setStat("2");
 		}
-		this.page = this.accountFlowService.findWaitAuditDataPage(this.page,
-				this.accountFlow, "takePayment");
+		this.page = this.accountFlowService.findWaitAuditDataPage(this.page, this.accountFlow, "takePayment");
 		return "takePayment";
 	}
 
@@ -102,16 +99,13 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 		if (this.accountFlow == null) {
 			this.accountFlow = new AccountFlow();
 			if (StringUtils.isEmpty(this.accountFlow.getBeginDate())) {
-				this.accountFlow.setBeginDate(DateUtil.afterNDay(new Date(),
-						-100, "yyyy-MM-dd"));
+				this.accountFlow.setBeginDate(DateUtil.afterNDay(new Date(), -100, "yyyy-MM-dd"));
 			}
 			if (StringUtils.isEmpty(this.accountFlow.getEndDate())) {
-				this.accountFlow.setEndDate(DateUtil.DateToString(new Date(),
-						"yyyy-MM-dd"));
+				this.accountFlow.setEndDate(DateUtil.DateToString(new Date(), "yyyy-MM-dd"));
 			}
 		}
-		this.page = this.accountFlowService.findWaitAuditDataPage(this.page,
-				this.accountFlow, "payFinaneRechecked");
+		this.page = this.accountFlowService.findWaitAuditDataPage(this.page, this.accountFlow, "payFinaneRechecked");
 		return "payFinaneRechecked";
 	}
 
@@ -121,8 +115,7 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 
 			this.accountFlow.setStat("1");
 		}
-		this.page = this.accountFlowService.findWaitAuditDataPage(this.page,
-				this.accountFlow, "payManageChecked");
+		this.page = this.accountFlowService.findWaitAuditDataPage(this.page, this.accountFlow, "payManageChecked");
 		return "payManageChecked";
 	}
 
@@ -130,16 +123,13 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 		if (this.accountFlow == null) {
 			this.accountFlow = new AccountFlow();
 			if (StringUtils.isEmpty(this.accountFlow.getBeginDate())) {
-				this.accountFlow.setBeginDate(DateUtil.afterNDay(new Date(),
-						-100, "yyyy-MM-dd"));
+				this.accountFlow.setBeginDate(DateUtil.afterNDay(new Date(), -100, "yyyy-MM-dd"));
 			}
 			if (StringUtils.isEmpty(this.accountFlow.getEndDate())) {
-				this.accountFlow.setEndDate(DateUtil.DateToString(new Date(),
-						"yyyy-MM-dd"));
+				this.accountFlow.setEndDate(DateUtil.DateToString(new Date(), "yyyy-MM-dd"));
 			}
 		}
-		this.page = this.accountFlowService.findWaitAuditDataPage(this.page,
-				this.accountFlow, "payManageRechecked");
+		this.page = this.accountFlowService.findWaitAuditDataPage(this.page, this.accountFlow, "payManageRechecked");
 		return "payManageRechecked";
 	}
 
@@ -147,25 +137,20 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 		if (this.accountFlow == null) {
 			this.accountFlow = new AccountFlow();
 			if (StringUtils.isEmpty(this.accountFlow.getBeginDate())) {
-				this.accountFlow.setBeginDate(DateUtil.afterNDay(new Date(),
-						-100, "yyyy-MM-dd"));
+				this.accountFlow.setBeginDate(DateUtil.afterNDay(new Date(), -100, "yyyy-MM-dd"));
 			}
 			if (StringUtils.isEmpty(this.accountFlow.getEndDate())) {
-				this.accountFlow.setEndDate(DateUtil.DateToString(new Date(),
-						"yyyy-MM-dd"));
+				this.accountFlow.setEndDate(DateUtil.DateToString(new Date(), "yyyy-MM-dd"));
 			}
 		}
-		this.page = this.accountFlowService.findWaitAuditDataPage(this.page,
-				this.accountFlow, "viewData");
+		this.page = this.accountFlowService.findWaitAuditDataPage(this.page, this.accountFlow, "viewData");
 		return "viewData";
 	}
 
 	public String inputpay() {
 		if ((this.bankRunning != null) && (this.bankRunning.getId() != null)) {
-			this.bankRunning = ((BankRunning) this.bankRunningService
-					.get(this.bankRunning.getId()));
-			this.bankRunning.setToday(DateUtil.DateToString(
-					this.bankRunning.getJzsj(), "yyyy-MM-dd"));
+			this.bankRunning = ((BankRunning) this.bankRunningService.get(this.bankRunning.getId()));
+			this.bankRunning.setToday(DateUtil.DateToString(this.bankRunning.getJzsj(), "yyyy-MM-dd"));
 			if ("1".equals(this.bankRunning.getSflx())) {
 				this.bankRunning.setJe(this.bankRunning.getSrje());
 			} else {
@@ -173,8 +158,7 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 			}
 		} else {
 			this.bankRunning = new BankRunning();
-			this.bankRunning.setToday(DateUtil.DateToString(new Date(),
-					"yyyy-MM-dd"));
+			this.bankRunning.setToday(DateUtil.DateToString(new Date(), "yyyy-MM-dd"));
 		}
 		return "inputpay";
 	}
@@ -183,8 +167,7 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 		try {
 			int idIndex = -1;
 			List<Integer> idList = null;
-			idList = this.accountFlowService.findAuditIdList(this.accountFlow,
-					this.type);
+			idList = this.accountFlowService.findAuditIdList(this.accountFlow, this.type);
 			int[] idArray;
 			if ((idList != null) && (idList.size() > 0)) {
 				idArray = new int[idList.size()];
@@ -194,8 +177,7 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 					i++;
 				}
 				if (this.id != null) {
-					idIndex = idList.indexOf(Integer.valueOf(Integer
-							.parseInt(this.id)));
+					idIndex = idList.indexOf(Integer.valueOf(Integer.parseInt(this.id)));
 					idIndex--;
 				}
 			} else if (this.id != null) {
@@ -218,68 +200,52 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 		String msg = "";
 		if ((StringUtils.isNotEmpty(this.id)) && (Utils.isNumeric(this.id))) {
 			try {
-				if (("payManageChecked".equals(this.type))
-						|| ("payManageRechecked".equals(this.type))) {
-					msg = this.accountFlowService
-							.updateAccountFlowPayManageApprove(this.id,
-									getLoginUser().getName());
-				} else if (("payFinaneChecked".equals(this.type))
-						|| ("payFinaneRechecked".equals(this.type))
-						|| ("takePayment".equals(this.type))
-						|| ("takePayment".equals(this.type))) {
-					msg = this.accountFlowService
-							.updateAccountFlowPayFinaneApprove(this.id,
-									this.bankRunning, getLoginUser().getName());
-				} else if (("takeFinaneChecked".equals(this.type))
-						|| ("takeFinaneRechecked".equals(this.type))) {
-					msg = this.accountFlowService
-							.updateAccountFlowTakeFinaneApprove(this.id,
-									this.bankRunningId, getLoginUser()
-											.getName());
+				if (("payManageChecked".equals(this.type)) || ("payManageRechecked".equals(this.type))) {
+					msg = this.accountFlowService.updateAccountFlowPayManageApprove(this.id, getLoginUser().getName());
+				} else if (("payFinaneChecked".equals(this.type)) || ("payFinaneRechecked".equals(this.type))
+						|| ("takePayment".equals(this.type)) || ("takePayment".equals(this.type))) {
+					msg = this.accountFlowService.updateAccountFlowPayFinaneApprove(this.id, this.bankRunning,
+							getLoginUser().getName());
+				} else if (("takeFinaneChecked".equals(this.type)) || ("takeFinaneRechecked".equals(this.type))) {
+					msg = this.accountFlowService.updateAccountFlowTakeFinaneApprove(this.id, this.bankRunningId,
+							getLoginUser().getName());
 				}
 			} catch (Exception e) {
-				System.out.println("审核时出错，ID: " + this.id
-						+ " 审核失败! Exception : " + e);
+				System.out.println("审核时出错，ID: " + this.id + " 审核失败! Exception : " + e);
 				msg = "审核时出错，ID: " + this.id + " 审核失败! Exception : " + e;
 			}
 		}
 		AccountFlow nextAccountFlow = null;
-		if ((this.nextId != null) && (!this.nextId.equals(""))
-				&& (!this.nextId.equals("NaN"))
+		if ((this.nextId != null) && (!this.nextId.equals("")) && (!this.nextId.equals("NaN"))
 				&& (Utils.isNumeric(this.nextId))) {
-			nextAccountFlow = (AccountFlow) this.accountFlowService.get(Integer
-					.valueOf(this.nextId));
+			nextAccountFlow = (AccountFlow) this.accountFlowService.get(Integer.valueOf(this.nextId));
 		}
 		setJsonStr(nextAccountFlow, msg);
 	}
 
+	// 回退9
 	public void deleteRecordJson() {
 		String msg = "";
 		if ((StringUtils.isNotEmpty(this.id)) && (Utils.isNumeric(this.id))) {
 			try {
-				msg = this.accountFlowService.deleteRecord(this.id,
-						getLoginUser().getName());
+				msg = this.accountFlowService.deleteRecord(this.id, getLoginUser().getName());
 			} catch (Exception e) {
 				msg = "回退操作时出错，流水记录ID: " + this.id + "， Exception : " + e;
-				System.out.println("回退操作时出错，流水记录ID: " + this.id
-						+ "， Exception : " + e);
+				System.out.println("回退操作时出错，流水记录ID: " + this.id + "， Exception : " + e);
 				e.printStackTrace();
 			}
 		}
 		AccountFlow nextAccountFlow = null;
-		if ((this.nextId != null) && (!this.nextId.equals(""))
-				&& (!this.nextId.equals("NaN"))
+		if ((this.nextId != null) && (!this.nextId.equals("")) && (!this.nextId.equals("NaN"))
 				&& (Utils.isNumeric(this.nextId))) {
-			nextAccountFlow = (AccountFlow) this.accountFlowService.get(Integer
-					.valueOf(this.nextId));
+			nextAccountFlow = (AccountFlow) this.accountFlowService.get(Integer.valueOf(this.nextId));
 		}
 		setJsonStr(nextAccountFlow, msg);
 	}
 
 	public void getUpRecordJson() {
 		if ((StringUtils.isNotEmpty(this.id)) && (Utils.isNumeric(this.id))) {
-			this.accountFlow = this.accountFlowService.doSearchServices(Integer
-					.valueOf(this.id));
+			this.accountFlow = this.accountFlowService.doSearchServices(Integer.valueOf(this.id));
 		} else {
 			this.accountFlow = null;
 		}
@@ -288,8 +254,7 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 
 	public void getNextRecordJson() {
 		if ((StringUtils.isNotEmpty(this.id)) && (Utils.isNumeric(this.id))) {
-			this.accountFlow = this.accountFlowService.doSearchServices(Integer
-					.valueOf(this.id));
+			this.accountFlow = this.accountFlowService.doSearchServices(Integer.valueOf(this.id));
 		} else {
 			this.accountFlow = null;
 		}
@@ -305,28 +270,19 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 				map.put("lrr", accountFlow.getUser().getName());
 				map.put("skje", getFormatMoney(accountFlow.getSkje()));
 				map.put("fkje", getFormatMoney(accountFlow.getFkje()));
-				map.put("shr",
-						accountFlow.getShr() == null ? "" : accountFlow
-								.getShr());
-				map.put("spr",
-						accountFlow.getSpr() == null ? "" : accountFlow
-								.getSpr());
+				map.put("shr", accountFlow.getShr() == null ? "" : accountFlow.getShr());
+				map.put("spr", accountFlow.getSpr() == null ? "" : accountFlow.getSpr());
 				map.put("stat", accountFlow.getStat());
-				map.put("statZw",
-						StaticUtils.getAccountStatMap().get(
-								accountFlow.getStat()));
-				map.put("sffsZw",
-						StaticUtils.getSffsMap().get(accountFlow.getSffs()));
+				map.put("statZw", StaticUtils.getAccountStatMap().get(accountFlow.getStat()));
+				map.put("sffsZw", StaticUtils.getSffsMap().get(accountFlow.getSffs()));
 				map.put("sflx", accountFlow.getYwlx());
-				map.put("sflxZw",
-						StaticUtils.getSflxMap().get(accountFlow.getYwlx()));
+				map.put("sflxZw", StaticUtils.getSflxMap().get(accountFlow.getYwlx()));
 				map.put("accountId", accountFlow.getAccountId());
 
 				map.put("bankRunningId", accountFlow.getBankRunningId());
 				if (accountFlow.getBank() != null) {
 					if (accountFlow.getBank().getDjm() == null) {
-						Bank bank = (Bank) this.bankService.get(accountFlow
-								.getBank().getId());
+						Bank bank = (Bank) this.bankService.get(accountFlow.getBank().getId());
 						map.put("djm", bank.getDjm());
 					} else {
 						map.put("djm", accountFlow.getBank().getDjm());
@@ -336,26 +292,22 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
 					map.put("djm", "");
 				}
 				if (accountFlow.getShsj() != null) {
-					map.put("shsj",
-							DateUtil.formatDate(accountFlow.getShsj(), null));
+					map.put("shsj", DateUtil.formatDate(accountFlow.getShsj(), null));
 				} else {
 					map.put("shsj", "");
 				}
 				if (accountFlow.getSpsj() != null) {
-					map.put("spsj",
-							DateUtil.formatDate(accountFlow.getSpsj(), null));
+					map.put("spsj", DateUtil.formatDate(accountFlow.getSpsj(), null));
 				} else {
 					map.put("spsj", "");
 				}
 				if (accountFlow.getLrsj() != null) {
-					map.put("lrsj",
-							DateUtil.formatDate(accountFlow.getLrsj(), null));
+					map.put("lrsj", DateUtil.formatDate(accountFlow.getLrsj(), null));
 				} else {
 					map.put("lrsj", "");
 				}
 				if (accountFlow.getSksj() != null) {
-					map.put("sksj", DateUtil.formatDate(accountFlow.getSksj(),
-							"yyyy-MM-dd"));
+					map.put("sksj", DateUtil.formatDate(accountFlow.getSksj(), "yyyy-MM-dd"));
 				} else {
 					map.put("sksj", "");
 				}

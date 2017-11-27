@@ -32,8 +32,7 @@ public class ContentAction extends BaseAction<WxContent, Integer> {
 		try {
 			Map<String, String> map = new HashMap();
 			if ((this.contentID != null) && (!"".equals(this.contentID))) {
-				this.wxContent = ((WxContent) this.wxContentService.get(Integer
-						.valueOf(Integer.parseInt(this.contentID))));
+				this.wxContent = ((WxContent) this.wxContentService.get(Integer.valueOf(Integer.parseInt(this.contentID))));
 				map.put("id", this.wxContent.getId()+"");
 				map.put("title", this.wxContent.getTitle());
 				JSONArray jsonArray = JSONArray.fromObject(map);

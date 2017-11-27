@@ -222,7 +222,7 @@ public class AccountFlowServiceImpl extends BaseServiceImpl<AccountFlow, Integer
     @rmpfLog(desc = "财务回退")
     public String deleteRecord(String id, String sessionName) {
         String result = "";
-
+        //通过id获得业务流水信息
         AccountFlow flow = (AccountFlow) this.accountFlowDao.get(Integer.valueOf(id));
         if (flow == null) {
             return result = "[flow_id=" + id + "]业务表中未找到该项数据！";
@@ -234,11 +234,12 @@ public class AccountFlowServiceImpl extends BaseServiceImpl<AccountFlow, Integer
         if ((flow.getStat() == "3") || ("3".equals(flow.getStat())) && (flow.getBankRunningId() == null)) {
             return result = "[flow_id=" + id + "]bankRunningId为空！";
         }
-        Integer bankRunningId   = null;
-        if (flow.getBankRunningId() != null){
-        	bankRunningId   = Integer.valueOf(flow.getBankRunningId().intValue());
+        Integer bankRunningId = null;
+        if (flow.getBankRunningId() != null) {
+            bankRunningId = Integer.valueOf(flow.getBankRunningId().intValue());
         }
         
+        //1为收款业务；2为付款业务
         if ((flow.getYwlx() == "1") || ("1".equals(flow.getYwlx()))) {
             String[] str = account_ids.split(",");
             for (int i = 0; i < str.length; i++) {
@@ -276,11 +277,8 @@ public class AccountFlowServiceImpl extends BaseServiceImpl<AccountFlow, Integer
                     }
                 }
             }
-            flow.setBankRunningId(null);
-            flow.setBank(null);
-            flow.setSksj(null);
         }
-        
+
         if ((flow.getStat() == "3") || ("3".equals(flow.getStat()))) {
             BankRunning bankRunning = (BankRunning) this.bankRunningService.get(bankRunningId);
             if (bankRunning == null) {
@@ -305,6 +303,10 @@ public class AccountFlowServiceImpl extends BaseServiceImpl<AccountFlow, Integer
 
                 this.bankRunningService.delete(bankRunningId);
             }
+            //回退清理已审数据
+            flow.setBankRunningId(null);
+            flow.setBank(null);
+            flow.setSksj(null);
             flow.setSpr(sessionName + "-回退");
             flow.setSpsj(new Date());
         } else {
