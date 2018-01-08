@@ -134,6 +134,7 @@
 						datahtml += '<td class="tips" title="'+data[i].qq+'">'+data[i].qq+'</td>';
 						datahtml += '<td class="tips" title="'+data[i].wxh+'">'+data[i].wxh+'</td>';
 						datahtml += '<td class="tips" title="'+data[i].gsdh+'">'+data[i].gsdh+'</td>';
+						datahtml += '<td>'+data[i].lrr+'</td>';
 						datahtml += '<td>'+data[i].typeName+'</td>';
 						datahtml += '<td>'+data[i].statName+'</td>';
 
@@ -183,6 +184,7 @@
                        <col width="7%" />
                        <col width="5%" />
                        <col width="5%" />
+                       <col width="5%" />
                        <s:if test="#request.needViolationAddressAudit == 1">
                        	<col width="5%"/>
                        </s:if>
@@ -202,6 +204,9 @@
 					</th>
 					<th>
 						<span class="sort" name="gsdh">公司电话</span>
+					</th>
+					<th>
+						<span class="sort" name="type">录入人</span>
 					</th>
 					<th>
 						<span class="sort" name="type">数据类型</span>
@@ -233,6 +238,9 @@
 						</td>
 						<td class="tips" />
 			              	<s:property value="#list.gsdh"/>
+						</td>
+						<td class="tips" />
+			              	<s:property value="#list.lrr"/>
 						</td>
 						<td class="tips" title="<s:if test="#list.type == 0">目录</s:if><s:if test="#list.type==1">区间</s:if><s:if test="#list.type==2">设备</s:if>">
 							<s:if test="#list.type == 0">城市</s:if><s:if test="#list.type==1">客户</s:if><s:if test="#list.type==2">联系人</s:if>

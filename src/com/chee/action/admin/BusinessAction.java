@@ -193,6 +193,7 @@ public class BusinessAction extends BaseAction<Business, Integer> {
 				map.put("yjf", getFormatMoney(this.business.getYjf()));
 				map.put("wsk", getFormatMoney(this.business.getYgs() - this.business.getYjs()));
 				map.put("lr", getFormatMoney(this.business.getYgs() - this.business.getYgf()));
+				System.out.println(getLoginUser().getDepartmentCode());
 				Boolean isCurrentUser = Boolean.valueOf((getLoginUser().getId().equals(this.business.getUser().getId())) || ("100000".equals(getLoginUser().getDepartmentCode())));
 				map.put("isCurrentUser", isCurrentUser.booleanValue() ? "true" : "false");
 				JSONArray jsonArray = JSONArray.fromObject(map);

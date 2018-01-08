@@ -1,6 +1,5 @@
 package com.chee.action.admin;
 
-import com.chee.common.Page;
 import com.chee.entity.City;
 import com.chee.entity.Customer;
 import com.chee.entity.District;
@@ -17,12 +16,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -77,7 +74,7 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
     }
 
     public String ajaxChildren() {
-        List<Customer> childrenList = new ArrayList();
+        List<Customer> childrenList = new ArrayList<Customer>();
         if ((this.customer != null) && (this.customer.getId() != null)) {
             childrenList = this.customerService.find("from Customer where parent = ? order by areaName asc", new Object[] { this.customer });
         } else {
@@ -85,7 +82,7 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
         }
         List<Map<String, String>> optionList = new ArrayList<Map<String, String>>();
         for (Customer address : childrenList) {
-            Map<String, String> map = new HashMap();
+            Map<String, String> map = new HashMap<String, String>();
             String typeName = "";
             if (address.getType().intValue() == 0) {
                 typeName = "城市";
@@ -112,27 +109,33 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
             map.put("pathName", address.getPathName() == null ? "" : address.getPathName());
             map.put("path", address.getPath() == null ? "" : address.getPath());
             map.put("hasChildren", address.getChildren().size() == 0 ? "0" : "1");
+            map.put("lrr", address.getLrr() == null ? "" : address.getLrr());
             optionList.add(map);
         }
         JSONArray jsonArray = JSONArray.fromObject(optionList);
         return ajaxJson(jsonArray.toString());
     }
 
-    public String ajaxCustomerZTree() 
-    {
+    /**
+     * 描述：组团社添加左边树形结构
+     * 
+     * @Author qin_dongliang
+     * @Date 2017-12-09 14:04:38
+     */
+    public String ajaxCustomerZTree() {
         Integer grade = Integer.valueOf(9);
         if ((getRequest().getParameter("grade") != null) && (!"".equals(getRequest().getParameter("grade")))) {
             grade = Integer.valueOf(Integer.parseInt(getRequest().getParameter("grade")));
         }
         List<String> pathList = new ArrayList<String>();
-    
+
         List<Customer> cacheCustomerList = this.customerService.getCustomerList(grade);
         if ((cacheCustomerList != null) && (cacheCustomerList.size() > 0)) {
             for (Customer cacheCustomer : cacheCustomerList) {
                 pathList.add(cacheCustomer.getPath());
             }
         }
-        
+
         List addressMapList = new ArrayList();
         HashMap allMap = new HashMap();
         allMap.put("id", Integer.valueOf(0));
@@ -144,30 +147,16 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
         allMap.put("pathName", "");
         allMap.put("visible", Boolean.valueOf(true));
         addressMapList.add(allMap);
-        
+
         if ((pathList != null) && (pathList.size() > 0)) {
-            Set pathIdSet = new HashSet();
-//            int j = 0;
-//            int i = 0;
-            String id = null;
-//            for (Iterator localIterator2 = pathList.iterator(); localIterator2.hasNext(); i < j) {
-//                String path = (String)localIterator2.next();
-//                if ((path == null) || ("".equals(path))) {
-//                    break;
-//                }
-//                String[] arrayOfString;
-//                j = (arrayOfString = path.split(",")).length;i = 0; continue;id = arrayOfString[i];
-//                pathIdSet.add(Integer.valueOf(Integer.parseInt(id)));
-//                i++;
-//            }
-            
+            Set<Integer> pathIdSet = new HashSet<Integer>();
             for (String path : pathList) {
                 if ((path == null) || ("".equals(path))) {
                     break;
                 }
-                pathIdSet.add(Integer.valueOf(Integer.parseInt(id)));
+                pathIdSet.add(Integer.valueOf(path));
             }
-            
+
             List<Customer> addressList = this.customerService.getPathCustomerList(pathIdSet);
             if ((addressList != null) && (addressList.size() > 0)) {
                 for (Customer customer : addressList) {
@@ -248,6 +237,7 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
                     this.customer.setSzdxf(this.district);
                 }
                 this.customer.setLrsj(new Date());
+                this.customer.setLrr(getLoginUser().getName());
                 this.customerID = ((Integer) this.customerService.save(this.customer)).toString();
                 ajaxJsonSuccessMessage(this.customerID);
             } else {
@@ -264,7 +254,7 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
         Customer persistent = null;
         if (this.customer.getId() != null) {
             persistent = (Customer) this.customerService.get(this.customer.getId());
-            BeanUtils.copyProperties(this.customer, persistent, new String[] { "id", "lrsj", "gxsj", "path", "parent", "children", "type", "stat" });
+            BeanUtils.copyProperties(this.customer, persistent, new String[] { "id", "lrsj", "lrr", "gxsj", "path", "parent", "children", "type", "stat" });
             if (this.parent.getId() != null) {
                 persistent.setParent((Customer) this.customerService.get(this.parent.getId()));
             } else {
@@ -278,6 +268,7 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
                 this.customer.setParent(null);
             }
             this.customer.setLrsj(new Date());
+            this.customer.setLrr(getLoginUser().getName());
             this.customer.setGxsj(new Date());
 
             persistent = this.customer;
@@ -309,7 +300,7 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
                 }
                 persistent = (Customer) this.customerService.get(this.customer.getId());
 
-                BeanUtils.copyProperties(this.customer, persistent, new String[] { "id", "lrsj", "gxsj", "path", "parent", "children", "type", "stat" });
+                BeanUtils.copyProperties(this.customer, persistent, new String[] { "id", "lrsj", "lrr", "gxsj", "path", "parent", "children", "type", "stat" });
                 if (this.parent.getId() != null) {
                     persistent.setParent((Customer) this.customerService.get(this.parent.getId()));
                 } else {
@@ -338,6 +329,7 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
                 this.customer.setParent(null);
             }
             persistent = this.customer;
+            persistent.setLrr(getLoginUser().getName());
             persistent.setLrsj(new Date());
             persistent.setGxsj(new Date());
             persistent.setStat(Integer.valueOf(1));
@@ -353,7 +345,7 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
         Customer persistent = null;
         if (this.customer.getId() != null) {
             persistent = (Customer) this.customerService.get(this.customer.getId());
-            BeanUtils.copyProperties(this.customer, persistent, new String[] { "id", "lrsj", "gxsj", "path", "parent", "children", "type", "stat" });
+            BeanUtils.copyProperties(this.customer, persistent, new String[] { "id", "lrsj", "lrr", "gxsj", "path", "parent", "children", "type", "stat" });
             if (this.parent.getId() != null) {
                 persistent.setParent((Customer) this.customerService.get(this.parent.getId()));
             } else {
@@ -366,6 +358,7 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
             } else {
                 this.customer.setParent(null);
             }
+            this.customer.setLrr(getLoginUser().getName());
             this.customer.setLrsj(new Date());
             this.customer.setGxsj(new Date());
 

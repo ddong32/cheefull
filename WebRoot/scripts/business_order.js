@@ -97,7 +97,7 @@ $(function() {
 		autoOpen: false,
 		resizable: false,
 		width:500,
-		maxHeight: window.screen.height-200,
+		maxHeight: window.screen.height-250,
 		modal: true,
 		close: function() {
 			$("#popupDialog").dialog("close");
@@ -227,6 +227,8 @@ $(document).ready(function(e) {
 function orderTable() {
 	$("#orderTable .alert-tip").hide();
 	var id = $("#_buessinID").val();
+	var username=$("#username").val();
+	var password="$("#password").val();
 	// 初始化显示合成图片
 	$.ajax({
 		type : "post",
