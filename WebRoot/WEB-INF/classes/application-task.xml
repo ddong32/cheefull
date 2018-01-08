@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- 根据6合1接口基本配置中，手动设置时间上传 -->
+	<!-- 1、要调用的工作类 -->
+    <bean id="quartzJobSequence" class="com.chee.util.SequenceUtil"></bean>
+    
+    <!-- 2、定义调用对象和调用对象的方法，交Quartz来管理。 -->
+    <bean id="JobSequenceTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="quartzJobSequence"/>     <!-- 调用的类 -->
+        <property name="targetMethod" value="resetSequence"/>       <!-- 调用类中的方法 -->
+    </bean>
+    
+    <!-- 3、定义触发时间 0 0 6,10,15,18 * * ?；每天6,10,15,18点启动-->
+    <bean id="JobSequenceTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="JobSequenceTask" />
+        <property name="cronExpression" value="0 0 0 * * ?" />
+    </bean>
+    
+    <!-- 4、总管理类；如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+    <bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="JobSequenceTime"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>
