@@ -64,6 +64,7 @@ public class AccountFlowServiceImpl extends BaseServiceImpl<AccountFlow, Integer
         return this.accountFlowDao.noGenerate();
     }
 
+    //经理付款审核
     public String updateAccountFlowPayManageApprove(String id, String sessionName) {
         String intStat = "2";
         String result = "";
@@ -92,6 +93,7 @@ public class AccountFlowServiceImpl extends BaseServiceImpl<AccountFlow, Integer
         return result;
     }
 
+    //财物付款审核
     public String updateAccountFlowPayFinaneApprove(String id, BankRunning bankRunning, String sessionName) {
         String intStat = "3";
         String result = "";
@@ -297,6 +299,9 @@ public class AccountFlowServiceImpl extends BaseServiceImpl<AccountFlow, Integer
                     this.bankService.updateBankCush(cush, Integer.valueOf(bankRunning.getBank().getId().intValue()));
                 }
             } else if ((bankRunning.getBank() != null) && (!"".equals(bankRunning.getBank().getId()))) {
+                //支出
+                flow.setBank(null);
+                flow.setSksj(null);
                 Bank b = (Bank) this.bankService.get(bankRunning.getBank().getId());
                 double cush = new Double(b.getCush() - bankRunning.getLrje()).doubleValue();
                 this.bankService.updateBankCush(cush, Integer.valueOf(bankRunning.getBank().getId().intValue()));
@@ -305,8 +310,6 @@ public class AccountFlowServiceImpl extends BaseServiceImpl<AccountFlow, Integer
             }
             //回退清理已审数据
             flow.setBankRunningId(null);
-            flow.setBank(null);
-            flow.setSksj(null);
             flow.setSpr(sessionName + "-回退");
             flow.setSpsj(new Date());
         } else {

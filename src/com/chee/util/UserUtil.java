@@ -36,9 +36,9 @@ public class UserUtil {
                 }
             }
         } catch (Exception localException) {
-            if (SecurityContextHolder.getContext().getAuthentication() != null) {
-                return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            }
+        }
+        if (SecurityContextHolder.getContext().getAuthentication() != null) {
+            return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         }
         return (User) this.userService.get(Integer.valueOf(1));
     }
