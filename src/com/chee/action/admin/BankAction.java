@@ -10,6 +10,7 @@ import com.chee.util.DateUtil;
 import com.chee.util.StringUtils;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.opensymphony.xwork2.validator.annotations.Validations;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -33,15 +34,17 @@ public class BankAction extends BaseAction<Bank, Integer> {
     private CommonService commonService;
     private Bank bank;
     private List<Bank> banklist;
+    private Map<String, Object> resultMap;
+    
     private String jzsj;
 
-    public String list() {
-        this.banklist = this.bankService.getAllDistinct();
+    public String list() throws Exception {
+        this.resultMap = this.bankService.getBankRuningMoneyStat();
         return "list";
     }
 
-    public String syslist() {
-        this.banklist = this.bankService.getAllDistinct();
+    public String syslist() throws Exception {
+        this.resultMap = this.bankService.getBankRuningMoneyStat();
         return "syslist";
     }
 
@@ -58,7 +61,7 @@ public class BankAction extends BaseAction<Bank, Integer> {
                 addActionError("卡号: " + this.bank.getCode() + " 已经存在!请重新输入!");
                 return "error";
             }
-            BeanUtils.copyProperties(this.bank, persistent, new String[] { "id", "gxsj" });
+            BeanUtils.copyProperties(this.bank, persistent, new String[] { "id", "gxsj"});
             persistent.setGxsj(new Date());
             this.bankService.update(persistent);
         } else {
@@ -70,7 +73,7 @@ public class BankAction extends BaseAction<Bank, Integer> {
             this.bankService.save(this.bank);
         }
         this.commonService.init();
-        this.redirectionUrl = "bank!list.action";
+        this.redirectionUrl = "bank!syslist.action";
         return "success";
     }
 
@@ -140,6 +143,14 @@ public class BankAction extends BaseAction<Bank, Integer> {
 
     public void setBanklist(List<Bank> banklist) {
         this.banklist = banklist;
+    }
+
+    public Map<String, Object> getResultMap() {
+        return resultMap;
+    }
+
+    public void setResultMap(Map<String, Object> resultMap) {
+        this.resultMap = resultMap;
     }
 
     public String getJzsj() {

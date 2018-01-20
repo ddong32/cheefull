@@ -118,50 +118,46 @@
     	<div class="datagrid">
 			<table id="listTable" class="listTable" cellpadding="0" cellspacing="0">
                	<colgroup>
-            		<col width="12%"/>
-                    <col width="5%"/>
-                    <col width="18%"/>
-                    <col width="1%"/>
-                    <col width="20%"/>
-                    <col width="20%"/>
-                    <col width="15%"/>
+            		<col width="7%"/>
+            		<col width="5%"/>
+            		<col width="18%"/>
+            		<col width="14%"/>
+                    <col width="16%"/>
+                    <col width="16%"/>
+                    <col width="16%"/>
+                    <col width="8%"/>
                 </colgroup>
 				<tr>
 					<th>登记名</th>
 					<th>户名</th>
-					<th class="tar">余额</th>
-					<th>&nbsp;</th>
-					<th>卡号</th>
 					<th>开户行</th>
+					<th>卡号</th>
+					<th class="tar" style="text-align: right">系统余额</th>
+					<th class="tar" style="text-align: right">银行余额</th>
+					<th class="tar" style="text-align: right">未审余额</th>
 					<th>&nbsp;</th>
 				</tr>
-				<s:set var ="total" value="0" />
-				<s:iterator value="banklist" var="list" status="status">
+				<s:iterator value="resultMap['list']" var="list" status="status">
 					<tr <s:if test="#status.count%2==1">class="cor"</s:if>>
-						<td class="tips" title=""><s:property value="#list.djm"/></td>
-						<td class="tips" title=""><s:property value="#list.name"/></td>
-						<td class="tips tar red" title=""><s:property value="getFormatMoney(#list.cush)"/></td>
-						<td class="tips" title="">&nbsp;</td>
-						<td class="tips" title=""><s:property value="#list.code"/></td>
-						<td class="tips" title=""><s:property value="#list.khh"/></td>
-						<td>
-							<%-- 
-							<security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_MANAGER">
-								<a class="popup" href="${ctx}/admin/bank!input.action?bank.id=<s:property value='#list.id'/>" title="编辑">[编辑]</a>
-								<a class="popupDelete" href="${ctx}/admin/bank!delete.action?bank.id=<s:property value='#list.id'/>" title="删除">[删除]</a>
-							</security:authorize>
-							--%>
-						</td>
+						<td class="tips" title=""><s:property value="#list['djm']"/></td>
+						<td class="tips" title=""><s:property value="#list['name']"/></td>
+						<td class="tips" title=""><s:property value="#list['khh']"/></td>
+						<td class="tips" title=""><s:property value="#list['code']"/></td>
+						<td class="tips tar green" title=""><s:property value="getFormatMoney(#list['xtje'])"/></td>
+						<td class="tips tar blue" title=""><s:property value="getFormatMoney(#list['yhje'])"/></td>
+						<td class="tips tar red" title=""><s:property value="getFormatMoney(#list['wsje'])"/></td>
+						<td></td>
 					</tr>
-					<s:set var ="total" value="#list.cush+#total"/>
 				</s:iterator>
 				<tr>
-                    <td colspan="2" class="tips "></td>
-                    <td class="tips tar red" id="_total">总计：<s:property value="getFormatMoney(#total)"/></td>
-                    <td class="tips" id="">&nbsp;</td>
-                    <td class="tips" id="">&nbsp;</td>
-                    <td class="tips" id="">&nbsp;</td>
-                    <td class="tips" id="">&nbsp;</td>
+                    <td class="tips ">&nbsp;</td>
+                    <td class="tips ">&nbsp;</td>
+                    <td class="tips ">&nbsp;</td>
+                    <td class="tips" >总计：</td>
+                    <td class="tips tar green" id="_total"><s:property value="getFormatMoney(resultMap['sumXtje'])"/></td>
+                    <td class="tips tar blue" id="_total"><s:property value="getFormatMoney(resultMap['sumYhje'])"/></td>
+                    <td class="tips tar red" id="_total"><s:property value="getFormatMoney(resultMap['sumWsje'])"/></td>
+                    <td></td>
                 </tr>
 			</table>
 		</div>

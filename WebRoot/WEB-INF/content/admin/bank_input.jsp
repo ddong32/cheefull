@@ -100,10 +100,6 @@ $(document).ready(function(e) {
 					<td><s:textfield name="bank.name" rule="noempty" maxlength="20" cssClass="pub_input"></s:textfield></td>
 				</tr>
 				<tr>
-					<td align="right" height="24" class="enforcetd_bg">余额:</td>
-					<td><s:textfield name="bank.cush" rule="noempty float" maxlength="20" cssClass="pub_input"></s:textfield></td>
-				</tr>
-				<tr>
 					<td align="right" height="24" class="enforcetd_bg">卡号:</td>
 					<td><s:textfield name="bank.code" rule="noempty num" maxlength="30" cssClass="pub_input"></s:textfield></td>
 				</tr>

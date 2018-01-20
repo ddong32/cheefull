@@ -1,18 +1,14 @@
 package com.chee.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.chee.entity.Bank;
 
-public abstract interface BankService
-  extends BaseService<Bank, Integer>
-{
-  public abstract int updateBankCush(double paramDouble, Integer paramInteger);
-  
-  public abstract String doTransfer(Bank paramBank, String paramString1, String paramString2)
-    throws Exception;
-}
+public abstract interface BankService extends BaseService<Bank, Integer> {
+    public abstract int updateBankCush(double paramDouble, Integer paramInteger);
 
-
-/* Location:           C:\Users\asus\Desktop\full\WEB-INF\classes\
- * Qualified Name:     com.chee.service.BankService
- * JD-Core Version:    0.7.0.1
- */
+    public abstract String doTransfer(Bank paramBank, String paramString1, String paramString2) throws Exception;
+    
+    public abstract Map<String, Object> getBankRuningMoneyStat() throws Exception;
+}

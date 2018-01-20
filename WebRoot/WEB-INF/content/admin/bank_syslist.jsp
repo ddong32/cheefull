@@ -98,20 +98,11 @@
 			}
 		};
 
-		//单击按钮进行审核
-		$("#transferlogButton").click(function() {
-			audit();
-		});
 	});
-	
-	function audit(){
-	  	var url = "${ctx}/admin/bank!transferlog.action";
-       	showDialog(url,0.7,"","","");
-	}
 	</script>
 </HEAD>
 <body class="con_r">
-    <form id="listForm" action="${ctx}/admin/bank!syslist.action" method="post">
+    <form id="listForm" action="${ctx}/admin/bank!list.action" method="post">
     	<div class="pub_inp_bg"><div class="pub_inp">
 			<table class="con_table">
 				<tr>
@@ -122,49 +113,59 @@
         </div></div>
         <div class="buttonArea_l">
             <input type="button" id="searchButton" class="pub_but searchButton formButton" value="查找" />
-            <input type="button" id="transferButton" class="pub_but formButton" href="${ctx}/admin/bank!transferinput.action" value="划转" />  &nbsp;
-        	
-        	<security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_MANAGER">
+            <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_MANAGER">
             	<input type="button" id="addButton" class="pub_but formButton" href="${ctx}/admin/bank!input.action" value="添加" />
             </security:authorize> 
-            <input type="button" id="transferlogButton" class="pub_but formButton" href="${ctx}/admin/bank!transferlist.action" value="划转记录" />  &nbsp;
+            <input type="button" id="transferButton" class="pub_but formButton" href="${ctx}/admin/bank!transferinput.action" value="划转" />  &nbsp;
         </div>
     	<div class="datagrid">
 			<table id="listTable" class="listTable" cellpadding="0" cellspacing="0">
                	<colgroup>
-            		<col width="12%"/>
-                    <col width="5%"/>
+            		<col width="7%"/>
+            		<col width="5%"/>
+            		<col width="18%"/>
+            		<col width="14%"/>
+                    <col width="16%"/>
+                    <col width="16%"/>
+                    <col width="16%"/>
                     <col width="8%"/>
-                    <col width="1%"/>
-                    <col width="20%"/>
-                    <col width="30%"/>
-                    <col width="15%"/>
                 </colgroup>
 				<tr>
 					<th>登记名</th>
 					<th>户名</th>
-					<th class="tar">余额</th>
-					<th>&nbsp;</th>
-					<th>卡号</th>
 					<th>开户行</th>
+					<th>卡号</th>
+					<th class="tar" style="text-align: right">系统余额</th>
+					<th class="tar" style="text-align: right">银行余额</th>
+					<th class="tar" style="text-align: right">未审余额</th>
 					<th>&nbsp;</th>
 				</tr>
-				<s:iterator value="banklist" var="list" status="status">
+				<s:iterator value="resultMap['list']" var="list" status="status">
 					<tr <s:if test="#status.count%2==1">class="cor"</s:if>>
-						<td class="tips" title=""><s:property value="#list.djm"/></td>
-						<td class="tips" title=""><s:property value="#list.name"/></td>
-						<td class="tips tar red" title=""><s:property value="getFormatMoney(#list.cush)"/></td>
-						<td class="tips" title="">&nbsp;</td>
-						<td class="tips" title=""><s:property value="#list.code"/></td>
-						<td class="tips" title=""><s:property value="#list.khh"/></td>
+						<td class="tips" title=""><s:property value="#list['djm']"/></td>
+						<td class="tips" title=""><s:property value="#list['name']"/></td>
+						<td class="tips" title=""><s:property value="#list['khh']"/></td>
+						<td class="tips" title=""><s:property value="#list['code']"/></td>
+						<td class="tips tar green" title=""><s:property value="getFormatMoney(#list['xtje'])"/></td>
+						<td class="tips tar blue" title=""><s:property value="getFormatMoney(#list['yhje'])"/></td>
+						<td class="tips tar red" title=""><s:property value="getFormatMoney(#list['wsje'])"/></td>
 						<td>
 							<security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_MANAGER">
-								<a class="popup" href="${ctx}/admin/bank!input.action?bank.id=<s:property value='#list.id'/>" title="编辑">[编辑]</a>
-								<a class="popupDelete" href="${ctx}/admin/bank!delete.action?bank.id=<s:property value='#list.id'/>" title="删除">[删除]</a>
-							</security:authorize> 
+							<a class="popup" href="${ctx}/admin/bank!input.action?bank.id=<s:property value='#list[\'id\']'/>" title="编辑">[编辑]</a>
+							</security:authorize>
 						</td>
 					</tr>
 				</s:iterator>
+				<tr>
+                    <td class="tips ">&nbsp;</td>
+                    <td class="tips ">&nbsp;</td>
+                    <td class="tips ">&nbsp;</td>
+                    <td class="tips" >总计：</td>
+                    <td class="tips tar green" id="_total"><s:property value="getFormatMoney(resultMap['sumXtje'])"/></td>
+                    <td class="tips tar blue" id="_total"><s:property value="getFormatMoney(resultMap['sumYhje'])"/></td>
+                    <td class="tips tar red" id="_total"><s:property value="getFormatMoney(resultMap['sumWsje'])"/></td>
+                    <td></td>
+                </tr>
 			</table>
 		</div>
 	</form>

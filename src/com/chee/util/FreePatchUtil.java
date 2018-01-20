@@ -18,7 +18,7 @@ public class FreePatchUtil {
     public static String webContent = "WebRoot";
     public static String classPath = "F:/workspace/myeclipse/study/jeewx-os/cheerfull/WebRoot/WEB-INF/classes";
     public static String desPath = "d:/updaate/full";
-    public static String version = "20170829";
+    public static String version = "20180120";
 
     public static void main(String[] args) throws Exception {
         copyFiles(getPatchFileList());
