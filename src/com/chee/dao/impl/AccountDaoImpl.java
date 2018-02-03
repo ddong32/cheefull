@@ -30,7 +30,7 @@ public class AccountDaoImpl extends BaseDaoImpl<Account, Integer> implements Acc
         StringBuffer hqlSb = new StringBuffer();
         hqlSb.append("FROM Account WHERE 1=1");
         hqlSb.append(" and orderId = '" + order_id + "' ");
-        hqlSb.append("order by sflx, businessCustomer, lrsj");
+        hqlSb.append("order by sflx, businessCustomer, stat desc, lrsj");
         return getSession().createQuery(hqlSb.toString()).list();
     }
 

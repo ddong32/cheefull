@@ -227,8 +227,8 @@ $(document).ready(function(e) {
 function orderTable() {
 	$("#orderTable .alert-tip").hide();
 	var id = $("#_buessinID").val();
-	var username=$("#username").val();
-	var password="$("#password").val();
+	//var username=$("#username").val();
+	//var password="$("#password").val();
 	// 初始化显示合成图片
 	$.ajax({
 		type : "post",
@@ -503,8 +503,13 @@ function business(){
 }
 
 function businessDdzt(ddzt){
+	var order_ygs = $("#orderTable tbody #_ygs").html();
+	var order_ygf = $("#orderTable tbody #_ygf").html();
+	var order_yjs = $("#orderTable tbody #_yjs").html();
+	var order_yjf = $("#orderTable tbody #_yjf").html();
+	var sumzero   = (parseFloat(order_ygs) + parseFloat(order_ygf) + parseFloat(order_yjs) + parseFloat(order_yjf));
 	var customer_wsk_boolean = $("#buctable tfoot td#hjwsk").html();
-	if(ddzt == 1){
+	if(sumzero > 0 && ddzt == 1){
 		if(ddztBoolean){
 	        $("#notice").html("收付项目为空，或有未审核的收付款，请联系财务尽快审核后再确认订单！");
 	        $("#notice").dialog('open');

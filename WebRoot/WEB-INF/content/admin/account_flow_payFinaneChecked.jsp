@@ -96,9 +96,13 @@
 					<td align="left" width="120">
 						<s:select name="accountFlow.stat" list="#{'2':'经理','3':'已审','9':'回退'}" headerKey="" headerValue="未选择" style="width:100px"></s:select>
 					</td>
-					<td align="right" width="73">订单编号:</td>
+					<td align="right" width="70">线路分类：</td>
+					<td align="left" width="90">
+				      	<s:select name="accountFlow.account.business.ddlx" list="ddlxMap" listKey="key" listValue="%{value}" headerKey="" headerValue="请选择" ></s:select>
+					</td>
+					<td align="right" width="73">订单编号：</td>
 					<td align="left" width="135"><s:textfield name="accountFlow.orderId" cssClass="pub_input" /></td>
-					<td align="right" width="70">操作人:</td>
+					<td align="right" width="70">操作人：</td>
 					<td align="left" width="120"><s:select cssClass="multiselect" multiple="true" name="accountFlow.proUserIds" id="_usersId" list="userList" listKey="id" listValue="name"/></td>
 				</tr>
 			</table>

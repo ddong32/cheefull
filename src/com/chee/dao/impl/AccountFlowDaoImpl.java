@@ -85,8 +85,8 @@ public class AccountFlowDaoImpl extends BaseDaoImpl<AccountFlow, Integer> implem
             if ((accountFlow != null) && (accountFlow.getEndDate() != null) && (!"".equals(accountFlow.getEndDate()))) {
                 hqlSb.append("and date_format(a.sksj,'%Y-%m-%d') <= '" + accountFlow.getEndDate() + "' ");
             }
-            if ((accountFlow != null) && (accountFlow.getBank() != null) && (accountFlow.getBank().getId() != null) && (!"".equals(accountFlow.getBank().getId()))) {
-                hqlSb.append("and a.bank.id = " + accountFlow.getBank().getId());
+            if ((accountFlow != null) && (accountFlow.getAccount() != null) && (accountFlow.getAccount().getBusiness() != null) && (!"".equals(accountFlow.getAccount().getBusiness().getDdlx()))) {
+                hqlSb.append(" and a.account.business.ddlx = " + accountFlow.getAccount().getBusiness().getDdlx());
             }
             if ((accountFlow != null) && (accountFlow.getBank() != null) && (accountFlow.getBank().getId() != null) && (!"".equals(accountFlow.getBank().getId()))) {
                 hqlSb.append("and a.bank.id = " + accountFlow.getBank().getId());

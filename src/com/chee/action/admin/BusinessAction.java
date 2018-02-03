@@ -208,8 +208,7 @@ public class BusinessAction extends BaseAction<Business, Integer> {
 	@rmpfLog(desc = "订单信息取销")
 	public String ajaxBusinessStat() {
 		if ((this.business != null) && (this.business.getId() != null)) {
-			this.businessService.updateBusinessStat(this.business.getId(),
-					this.business.getDdzt());
+			this.businessService.updateBusinessStat(this.business.getId(), this.business.getDdzt());
 		}
 		return "success";
 	}

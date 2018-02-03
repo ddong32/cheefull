@@ -105,10 +105,14 @@
 						<s:select name="accountFlow.stat" list="#{'1':'未审','3':'已审','9':'回退'}" headerKey="" headerValue="未选择" style="width:100px"></s:select>
 					</td>
 					<td align="right" width="80">收款日期：</td>
-					<td align="left" width="250">
+					<td align="left" width="230">
 						<input type="text" class="Wdate" name="accountFlow.beginDate" id="bd" size="12" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'ed\');}',startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',readOnly:true})" readonly="true" class="Wdate" style="width:90px;text-indent:4px" value="${accountFlow.beginDate}" />
 						至
 						<input type="text" class="Wdate" name="accountFlow.endDate" id="ed" size="12" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'bd\');}',startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',readOnly:true})" readonly="true" class="Wdate" style="width:90px;text-indent:4px" value="${accountFlow.endDate}"/>
+					</td>
+					<td align="right" width="70">线路分类：</td>
+					<td align="left" width="90">
+				      	<s:select name="accountFlow.account.business.ddlx" list="ddlxMap" listKey="key" listValue="%{value}" headerKey="" headerValue="请选择" ></s:select>
 					</td>
 					<td align="right" width="73">收支银行：</td>
 					<td align="left" width="135">

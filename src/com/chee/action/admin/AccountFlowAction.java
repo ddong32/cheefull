@@ -77,7 +77,6 @@ public class AccountFlowAction extends BaseAction<AccountFlow, Integer> {
     public String payFinaneChecked() {
         if (this.accountFlow == null) {
             this.accountFlow = new AccountFlow();
-
             this.accountFlow.setStat("2");
         }
         this.page = this.accountFlowService.findWaitAuditDataPage(this.page, this.accountFlow, "payFinaneChecked");
