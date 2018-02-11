@@ -1,4 +1,4 @@
-html{font:13px "Microsoft Yahei", Arial,'瀹嬩綋', Helvetica,sans-serif; margin:0; padding:0;}
+html{font:13px "Microsoft Yahei", Arial,'雅黑', Helvetica,sans-serif; margin:0; padding:0;}
 body.nobg{background:#f6f6f6;}
 a:link, a:visited{text-decoration:none;color:#04729d;}
 a:hover{color:#f20; text-decoration:underline;}
@@ -7,7 +7,6 @@ a:hover{color:#f20; text-decoration:underline;}
 table.orderTable{empty-cells:show; border-collapse:collapse; font:13px "Microsoft Yahei",  Arial,'瀹嬩綋', Helvetica,sans-serif;}
 h1,h2,h3,h4,h5,h6{margin:0; padding:0; border:none; list-style-type:none; font-size:13px;}
 
-/* 鐐瑰嚮鍙樻垚杈撳叆妗嗗浘鏍囨彁绀�*/
 .onClickIco{background:url(../images/onClickIco.gif) no-repeat; display:inline-block; margin:0 0 0 2px; width:12px; height:12px; overflow:hidden;}
 #OsMsgIofo{z-index:10;position:fixed; top:10%; left:48%; width:100px; height:100px;line-height:100px; color:#FFF;text-align:center; border-radius:100px; display:none;}
 #OsMsgIofo .msgbj{z-index:10; position:absolute; top:10%; left:48%; width:100px; height:100px; border-radius:100px; background-color:#f20;filter:alpha(opacity=70);-moz-opacity:0.7;opacity:0.7;}
