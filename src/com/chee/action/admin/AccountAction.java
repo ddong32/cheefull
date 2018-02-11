@@ -39,6 +39,7 @@ public class AccountAction extends BaseAction<Account, Integer> {
     private Integer[] ids;
     private String account_ids;
 
+    //订单录入 - 收付项目
     public String ajaxBusinessAccountTable() {
         try {
             List<Account> accountList = new ArrayList<Account>();
