@@ -151,12 +151,12 @@ public class CustomerAction extends BaseAction<Customer, Integer> {
         if ((pathList != null) && (pathList.size() > 0)) {
             Set<Integer> pathIdSet = new HashSet<Integer>();
             for (String path : pathList) {
-                if ((path == null) || ("".equals(path))) {
-                    break;
+                if ((path != null) && (!"".equals(path))) {
+                    for (String id : path.split(",")) {
+                        pathIdSet.add(Integer.valueOf(Integer.parseInt(id)));
+                    }
                 }
-                pathIdSet.add(Integer.valueOf(path));
             }
-
             List<Customer> addressList = this.customerService.getPathCustomerList(pathIdSet);
             if ((addressList != null) && (addressList.size() > 0)) {
                 for (Customer customer : addressList) {
